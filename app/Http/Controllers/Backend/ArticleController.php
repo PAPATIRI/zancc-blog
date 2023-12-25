@@ -35,16 +35,13 @@ class ArticleController extends Controller
                 ->addColumn('button', function ($article) {
                     return '<div>
                                 <td class="d-flex gap-3 justify-content-center">
-                                    <button class="btn btn-primary rounded-5" data-bs-toggle="modal"
-                                            data-bs-target="#modalUpdate{{$article->id}}">
+                                    <a href="articles/'.$article->id.'" class="btn btn-primary rounded-5"">
                                         <i class="bi bi-eye"></i>
-                                    </button>
-                                    <button class="btn btn-secondary rounded-5" data-bs-toggle="modal"
-                                            data-bs-target="#modalUpdate{{$article->id}}">
+                                    </a>
+                                    <button class="btn btn-secondary rounded-5">
                                         <i class="bi bi-pencil-square"></i>
                                     </button>
-                                    <button class="btn btn-danger rounded-5" data-bs-toggle="modal"
-                                            data-bs-target="#modalDelete{{$article->id}}">
+                                    <button class="btn btn-danger rounded-5"">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </td>
@@ -93,7 +90,9 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('backend.article.show', [
+            'articles'=>Article::find($id)
+        ]);
     }
 
     /**

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->longText('desc');
             $table->string('image');
             $table->string('status');
-            $table->integer('views');
+            $table->integer('views')->default(0);
             $table->date('publish_date');
             $table->timestamps();
         });

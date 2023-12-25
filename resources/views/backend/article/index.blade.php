@@ -12,8 +12,8 @@
                     <li class="breadcrumb-item active" aria-current="page">Artikel</li>
                 </ol>
             </nav>
-            <button class="btn btn-success my-3" data-bs-toggle="modal" data-bs-target="#modalCreate">Tambah Artikel
-            </button>
+            <a href="{{url('articles/create')}}" class="btn btn-success my-3" >Tambah Artikel
+            </a>
 
             {{--error validation message--}}
             @if ($errors->any())
@@ -65,8 +65,8 @@
                     ajax: '{{url()->current()}}',
                     columns: [
                         {
-                            data: 'id',
-                            name: 'id'
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex'
                         },
                         {
                             data: 'title',

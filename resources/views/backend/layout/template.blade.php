@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>admin dashboard</title>
+    <title>@yield('title')</title>
     {{--script vite--}}
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    {{--    panggil css secara dinamis--}}
+    @stack('css')
 </head>
 
 <body id="page-top" class="bg-body-secondary">
@@ -26,10 +28,10 @@
                         syarif
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow dropdown-menu-dark">
-                        <li><a href="#" class="dropdown-item">profile</a></li>
+                        <li><a href="#" class="dropdown-item">profil</a></li>
                         <li><a href="#" class="dropdown-item">pengaturan</a></li>
                         <li><a href="#" class="dropdown-item">tentang</a></li>
-                        <li><a href="#" class="dropdown-item">logout</a></li>
+                        <li><a href="#" class="dropdown-item">keluar</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,13 +50,14 @@
                     </a>
                 </div>
                 <div class="nav-item dropdown bg-dark-subtle p-1 p-lg-3 flex-fill shadow-sm rounded">
-                    <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" class="nav-link dropdown-toggle">
+                    <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                       class="nav-link dropdown-toggle">
                         <i class="bi bi-journal-text mx-2 text-dark"></i>
                         Blog
                     </a>
                     <ul class="dropdown-menu shadow dropdown-menu-dark">
-                        <li><a href="#" class="dropdown-item">article</a></li>
-                        <li><a href="{{url('categories')}}" class="dropdown-item">categories</a></li>
+                        <li><a href="{{url('articles')}}" class="dropdown-item">artikel</a></li>
+                        <li><a href="{{url('categories')}}" class="dropdown-item">kategori</a></li>
                     </ul>
                 </div>
                 <div class="nav-item bg-dark-subtle p-1 p-lg-3 flex-fill shadow-sm rounded">
@@ -75,4 +78,6 @@
 
 {{--content--}}
 @yield("content")
+
+@stack('js')
 </body>

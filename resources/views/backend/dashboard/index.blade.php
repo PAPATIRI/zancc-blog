@@ -1,4 +1,5 @@
 @extends("backend.layout.template")
+@section('title','Admin | Dashboard')
 @section("content")
     <div class="container">
         <h1>dashboard</h1>

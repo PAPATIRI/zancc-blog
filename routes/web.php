@@ -22,6 +22,7 @@ Route::get("/dashboard", [\App\Http\Controllers\Backend\DashboardController::cla
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('articles', \App\Http\Controllers\Backend\ArticleController::class);
 Route::resource("categories", \App\Http\Controllers\Backend\CategoryController::class)->only([
     'index', 'store', 'update', 'destroy'
 ]);

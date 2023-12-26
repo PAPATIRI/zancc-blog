@@ -1,15 +1,15 @@
 @extends("backend.layout.template")
-@section('title', 'Admin | Kategori')
+@section('title', 'Admin | User')
 @section("content")
     <div class="container">
         <div class="my-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url('dashboard')}}"><i class="bi bi-house"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Kategori</li>
+                    <li class="breadcrumb-item active" aria-current="page">Users</li>
                 </ol>
             </nav>
-            <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#modalCreate">Tambah Kategori
+            <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#modalCreate">Tambah User
             </button>
 
             {{--error validation message--}}
@@ -31,25 +31,25 @@
                     <tr class="fw-bold">
                         <td>no</td>
                         <td>nama</td>
-                        <td>slug</td>
+                        <td>email</td>
                         <td>create at</td>
                         <td>function</td>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($categories as $category)
+                    @foreach($users as $user)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->slug}}</td>
-                            <td>{{$category->created_at}}</td>
+                            <td>{{$user->name}}</td>
+                            <td>{{$user->email}}</td>
+                            <td>{{$user->created_at}}</td>
                             <td class="d-flex gap-3 justify-content-start">
                                 <button class="btn btn-secondary rounded-5" data-bs-toggle="modal"
-                                        data-bs-target="#modalUpdate{{$category->id}}">
+                                        data-bs-target="#modalUpdate{{$user->id}}">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
                                 <a href="#" class="btn btn-danger rounded-5" onClick="deleteCategory(this)"
-                                   data-id="{{$category->id}}">
+                                   data-id="{{$user->id}}">
                                     <i class="bi bi-trash"></i>
                                 </a>
                             </td>
@@ -61,9 +61,9 @@
             </div>
         </div>
         {{--modal--}}
-        @include('backend.category.create-modal')
-        @include('backend.category.update-modal')
-        @include('backend.category.delete-modal')
+{{--        @include('backend.category.create-modal')--}}
+{{--        @include('backend.category.update-modal')--}}
+{{--        @include('backend.category.delete-modal')--}}
 
         @push('js')
             <script src="https://code.jquery.com/jquery-3.7.0.js"></script>

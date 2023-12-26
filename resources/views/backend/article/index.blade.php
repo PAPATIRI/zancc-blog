@@ -12,7 +12,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Artikel</li>
                 </ol>
             </nav>
-            <a href="{{url('articles/create')}}" class="btn btn-success my-3">Tambah Artikel
+            <a href="{{url('articles/create')}}" class="btn btn-success my-2">Tambah Artikel
             </a>
 
             {{--error validation message--}}
@@ -27,9 +27,7 @@
             @endif
 
             {{--success alert--}}
-            <div class="swal" data-swal="{{session('success')}}">
-
-            </div>
+            <div class="swal" data-swal="{{session('success')}}"></div>
 
             <table class="table table-striped" id="dataTable">
                 <thead>

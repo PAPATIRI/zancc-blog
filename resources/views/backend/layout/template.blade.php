@@ -43,14 +43,14 @@
     </div>
     <nav class="navbar navbar-expand" style="margin-top: -40px">
         <div class="container d-flex align-items-center justify-content-center">
-            <div class="navbar-nav d-flex flex-row gap-2 align-items-center justify-content-center w-100">
-                <div class="nav-item bg-dark-subtle p-1 p-lg-3 flex-fill shadow-sm rounded">
+            <div class="navbar-nav d-flex flex-wrap flex-row gap-2 align-items-center justify-content-center w-100">
+                <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
                     <a href="{{url('dashboard')}}" class="nav-link text-dark">
                         <i class="bi bi-house mx-2"></i>
                         Dashboard
                     </a>
                 </div>
-                <div class="nav-item dropdown bg-dark-subtle p-1 p-lg-3 flex-fill shadow-sm rounded">
+                <div class="nav-item dropdown bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
                     <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                        class="nav-link dropdown-toggle">
                         <i class="bi bi-journal-text mx-2 text-dark"></i>
@@ -61,16 +61,22 @@
                         <li><a href="{{url('categories')}}" class="dropdown-item">kategori</a></li>
                     </ul>
                 </div>
-                <div class="nav-item bg-dark-subtle p-1 p-lg-3 flex-fill shadow-sm rounded">
+                <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
                     <a href="#" class="nav-link">
                         <i class="bi bi-person-workspace mx-2 text-dark"></i>
                         Project
                     </a>
                 </div>
-                <div class="nav-item bg-dark-subtle p-1 p-lg-3 flex-fill shadow-sm rounded">
+                <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
                     <a href="#" class="nav-link">
                         <i class="bi bi-images mx-2 text-dark"></i>
                         galery
+                    </a>
+                </div>
+                <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
+                    <a href="{{url('users')}}" class="nav-link">
+                        <i class="bi bi-people mx-2 text-dark"></i>
+                        Users
                     </a>
                 </div>
             </div>

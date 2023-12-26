@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -35,12 +36,12 @@ class ArticleController extends Controller
                 ->addColumn('button', function ($article) {
                     return '<div>
                                 <td class="d-flex gap-3 justify-content-center">
-                                    <a href="articles/'.$article->id.'" class="btn btn-primary rounded-5"">
+                                    <a href="articles/' . $article->id . '" class="btn btn-primary rounded-5"">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <button class="btn btn-secondary rounded-5">
+                                    <a href="articles/' . $article->id . '/edit" class="btn btn-secondary rounded-5">
                                         <i class="bi bi-pencil-square"></i>
-                                    </button>
+                                    </a>
                                     <button class="btn btn-danger rounded-5"">
                                         <i class="bi bi-trash"></i>
                                     </button>
@@ -91,7 +92,7 @@ class ArticleController extends Controller
     public function show(string $id)
     {
         return view('backend.article.show', [
-            'articles'=>Article::find($id)
+            'articles' => Article::find($id)
         ]);
     }
 
@@ -100,15 +101,35 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('backend.article.edit', [
+            'article' => Article::find($id),
+            'categories' => Category::get()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateArticleRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image'); //foto
+            $fileName = uniqid() . '.' . $file->getClientOriginalExtension(); //ambil ekstensi
+            $file->storeAs('public/backend/', $fileName); // masuk folder public/backend/23234.jpg
+            Storage::delete('public/backend/' . $request->oldImg); //unlink img/ delete old image
+
+            $data['image'] = $fileName;
+        } else {
+            $data['image'] = $request->oldImg;
+        }
+
+        $data['slug'] = Str::slug($data['title']);
+
+        Article::find($id)->update($data);
+
+        return redirect(url('articles'))->with('success', 'sebuah artikel berhasil diubah');
     }
 
     /**

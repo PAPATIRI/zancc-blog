@@ -49,12 +49,15 @@
                     </div>
                     <div class="mb-3">
                         <label for="desc">konten</label>
-                        <textarea name="desc" id="desc" cols="20" rows="10" placeholder="konten artikel"
+                        <textarea name="desc" id="myEditor" cols="20" rows="10" placeholder="konten artikel"
                                   class="form-control"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="image">gambar thumbnail <span class="text-danger">max (3MB)</span> </label>
                         <input type="file" name="image" id="image" class="form-control" value="{{old('image')}}">
+                        <div class="mt-1">
+                            <img alt="preview image" src="" id="image" class="img-thumbnail img-preview" style="width: 250px; height: auto">
+                        </div>
                     </div>
                 </div>
 
@@ -88,6 +91,32 @@
 
     @push('js')
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+
+        <script>
+            var options = {
+                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+                clipboard_handleImages: false
+            }
+            CKEDITOR.replace( 'myEditor', options );
+
+            $('#image').change(function(){
+                previewImage(this)
+            })
+
+            function previewImage(input){
+                if(input.files && input.files[0]){
+                    var reader = new FileReader()
+                    reader.onload = function(e){
+                        $('.img-preview').attr('src', e.target.result)
+                    }
+                    reader.readAsDataURL(input.files[0])
+                }
+            }
+        </script>
     @endpush
 
 @endsection

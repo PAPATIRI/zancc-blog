@@ -6,7 +6,7 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a style="text-decoration: none" href="{{url('dashboard')}}"><i
-                                    class="bi bi-house"></i></a></li>
+                                class="bi bi-house"></i></a></li>
                     <li class="breadcrumb-item"><a style="text-decoration: none" href="{{url('articles')}}">Artikel</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Tambah Artikel</li>
@@ -55,16 +55,23 @@
                     </div>
                     <div class="mb-3">
                         <label for="desc">Content</label>
-                        <textarea name="desc" id="desc" cols="30" rows="10"
+                        <textarea name="desc" id="myEditor" cols="30" rows="10"
                                   class="form-control">{{old('desc', $article->desc)}}</textarea>
                     </div>
                     <div class="mb-3">
                         <label for="image">gambar thumbnail <span class="text-danger">(max 3MB)</span> </label>
                         <input type="file" name="image" id="image" class="form-control">
-                        <div class="mt-2">
-                            <small class="text-dark d-block my-1">gambar lama</small>
-                            <img src="{{asset('storage/backend/'.$article->image)}}" alt="thumbnail article"
-                                 width="100px" height="auto" class="img-fluid rounded">
+                        <div class="mt-2 d-flex gap-5">
+                            <div class="mt-1">
+                                <small class="text-dark d-block my-1">gambar lama</small>
+                                <img src="{{asset('storage/backend/'.$article->image)}}" alt="thumbnail article"
+                                     style="width: 150px; height: auto" class="img-fluid rounded">
+                            </div>
+                            <div class="mt-1">
+                                <small class="text-dark d-block my-1">gambar baru</small>
+                                <img src="" id="image" class="img-thumbnail img-preview"
+                                     style="width: 150px; height: auto">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -100,6 +107,32 @@
 
     @push('js')
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+        <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+
+        <script>
+            var options = {
+                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
+                clipboard_handleImages: false
+            }
+            CKEDITOR.replace('myEditor', options);
+
+            $('#image').change(function () {
+                previewImage(this)
+            })
+
+            function previewImage(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader()
+                    reader.onload = function (e) {
+                        $('.img-preview').attr('src', e.target.result)
+                    }
+                    reader.readAsDataURL(input.files[0])
+                }
+            }
+        </script>
     @endpush
 
 @endsection

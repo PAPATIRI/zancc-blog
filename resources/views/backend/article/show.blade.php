@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <th>Konten</th>
-                        <td>: {{$articles->desc}}</td>
+                        <td>: {!! $articles->desc !!}</td>
                     </tr>
                 </table>
             </div>

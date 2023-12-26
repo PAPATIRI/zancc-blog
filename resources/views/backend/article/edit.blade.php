@@ -9,7 +9,7 @@
                                 class="bi bi-house"></i></a></li>
                     <li class="breadcrumb-item"><a style="text-decoration: none" href="{{url('articles')}}">Artikel</a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Tambah Artikel</li>
+                    <li class="breadcrumb-item active" aria-current="page">Ubah Artikel</li>
                 </ol>
             </nav>
             <h2 class="h2">Edit Artikel</h2>

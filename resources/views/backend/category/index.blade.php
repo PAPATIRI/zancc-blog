@@ -44,11 +44,11 @@
                             <td>{{$category->slug}}</td>
                             <td>{{$category->created_at}}</td>
                             <td class="d-flex gap-3 justify-content-start">
-                                <button class="btn btn-secondary rounded-5" data-bs-toggle="modal"
+                                <button class="btn btn-secondary" data-bs-toggle="modal"
                                         data-bs-target="#modalUpdate{{$category->id}}">
                                     <i class="bi bi-pencil-square"></i>
                                 </button>
-                                <a href="#" class="btn btn-danger rounded-5" onClick="deleteCategory(this)"
+                                <a href="#" class="btn btn-danger" onClick="deleteCategory(this)"
                                    data-id="{{$category->id}}">
                                     <i class="bi bi-trash"></i>
                                 </a>

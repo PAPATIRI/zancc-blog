@@ -36,13 +36,13 @@ class ArticleController extends Controller
                 ->addColumn('button', function ($article) {
                     return '<div>
                                 <td class="d-flex gap-3 justify-content-center">
-                                    <a href="articles/' . $article->id . '" class="btn btn-primary rounded-5"">
+                                    <a href="articles/' . $article->id . '" class="btn btn-primary">
                                         <i class="bi bi-eye"></i>
                                     </a>
-                                    <a href="articles/' . $article->id . '/edit" class="btn btn-secondary rounded-5">
+                                    <a href="articles/' . $article->id . '/edit" class="btn btn-secondary">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <a href="#" onclick="deleteArticle(this)" data-id="'.$article->id.'" class="btn btn-danger rounded-5"">
+                                    <a href="#" onclick="deleteArticle(this)" data-id="'.$article->id.'" class="btn btn-danger">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </td>

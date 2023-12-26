@@ -44,11 +44,10 @@
                             <td>{{$user->email}}</td>
                             <td>{{$user->created_at}}</td>
                             <td class="d-flex gap-3 justify-content-start">
-                                <button class="btn btn-secondary rounded-5" data-bs-toggle="modal"
-                                        data-bs-target="#modalUpdate{{$user->id}}">
-                                    <i class="bi bi-pencil-square"></i>
+                                <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#modalUpdate{{$user->id}}">
+                                    <i class="bi bi-pencil"></i>
                                 </button>
-                                <a href="#" class="btn btn-danger rounded-5" onClick="deleteCategory(this)"
+                                <a href="#" class="btn btn-danger" onClick="deleteUser(this)"
                                    data-id="{{$user->id}}">
                                     <i class="bi bi-trash"></i>
                                 </a>
@@ -61,9 +60,8 @@
             </div>
         </div>
         {{--modal--}}
-{{--        @include('backend.category.create-modal')--}}
-{{--        @include('backend.category.update-modal')--}}
-{{--        @include('backend.category.delete-modal')--}}
+        @include('backend.user.create-modal')
+        @include('backend.user.update-modal')
 
         @push('js')
             <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
@@ -81,7 +79,7 @@
                     })
                 }
 
-                function deleteCategory(e) {
+                function deleteUser(e) {
                     let id = e.getAttribute('data-id')
 
                     Swal.fire({
@@ -100,7 +98,7 @@
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 },
                                 type: 'DELETE',
-                                url: '/categories/' + id,
+                                url: '/users/' + id,
                                 dataType: 'json',
                                 success: function (response) {
                                     Swal.fire({
@@ -110,7 +108,7 @@
                                         showConfirmButton: false,
                                         timer: 1500
                                     }).then((result) => {
-                                        window.location.href = '/categories'
+                                        window.location.href = '/users'
                                     })
                                 },
                                 error: function (xhr, ajaxOptions, thrownError) {

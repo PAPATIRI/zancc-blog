@@ -26,13 +26,25 @@
                 <div class="nav-item dropdown">
                     <a href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                        class="nav-link dropdown-toggle d-flex gap-2 align-items-center text-light fs-5 fw-light">
-                        syarif
+                        {{auth()->user()->name}}
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end shadow dropdown-menu-dark">
+                    <ul class="dropdown-menu dropdown-menu-end shadow dropdown-menu-dark p-2">
+                        <li class="px-3 pb-3">{{auth()->user()->email}}</li>
                         <li><a href="#" class="dropdown-item">profil</a></li>
                         <li><a href="#" class="dropdown-item">pengaturan</a></li>
                         <li><a href="#" class="dropdown-item">tentang</a></li>
-                        <li><a href="#" class="dropdown-item">keluar</a></li>
+                        <li>
+                            <a class="dropdown-item text-bg-danger rounded opacity-75" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
+
                     </ul>
                 </div>
             </div>

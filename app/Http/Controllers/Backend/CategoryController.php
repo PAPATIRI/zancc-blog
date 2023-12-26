@@ -55,7 +55,10 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         Category::find($id)->delete();
-        return back()->with('success', 'sukses menghapus kategori');
+
+        return response()->json([
+            "message"=>"sukses menghapus kategori"
+        ]);
 
     }
 }

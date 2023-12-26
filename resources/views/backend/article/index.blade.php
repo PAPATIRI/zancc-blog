@@ -12,7 +12,7 @@
                     <li class="breadcrumb-item active" aria-current="page">Artikel</li>
                 </ol>
             </nav>
-            <a href="{{url('articles/create')}}" class="btn btn-success my-3" >Tambah Artikel
+            <a href="{{url('articles/create')}}" class="btn btn-success my-3">Tambah Artikel
             </a>
 
             {{--error validation message--}}
@@ -26,12 +26,10 @@
                 </div>
             @endif
 
-            @if(session('success'))
-                <div class="alert alert-success mt-1">
-                    {{session('success')}}
-                </div>
+            {{--success alert--}}
+            <div class="swal" data-swal="{{session('success')}}">
 
-            @endif
+            </div>
 
             <table class="table table-striped" id="dataTable">
                 <thead>
@@ -56,7 +54,61 @@
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
         <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+        {{-- sweet alert script --}}
+        <script>
+            const swal = $('.swal').data('swal')
+            if (swal) {
+                Swal.fire({
+                    'title': 'Success',
+                    'text': swal,
+                    'icon': 'success',
+                    'showConfirmButton': false,
+                    'timer': 1500
+                })
+            }
+
+            function deleteArticle(e) {
+                let id = e.getAttribute('data-id')
+
+                Swal.fire({
+                    title: 'Delete',
+                    text: 'Apakah kamu yakin menghapus artikel ini?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Hapus',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'DELETE',
+                            url: '/articles/' + id,
+                            dataType: 'json',
+                            success: function (response) {
+                                Swal.fire({
+                                    title: 'Berhasil',
+                                    text: response.message,
+                                    icon: 'success'
+                                }).then((result) => {
+                                    window.location.href = '/articles'
+                                })
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError)
+                            }
+                        })
+                    }
+                })
+            }
+        </script>
+
+        {{--data table script--}}
         <script>
             $(document).ready(function () {
                 $('#dataTable').DataTable({

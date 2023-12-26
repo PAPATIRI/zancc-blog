@@ -42,9 +42,9 @@ class ArticleController extends Controller
                                     <a href="articles/' . $article->id . '/edit" class="btn btn-secondary rounded-5">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <button class="btn btn-danger rounded-5"">
+                                    <a href="#" onclick="deleteArticle(this)" data-id="'.$article->id.'" class="btn btn-danger rounded-5"">
                                         <i class="bi bi-trash"></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </div>';
 
@@ -137,6 +137,12 @@ class ArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Article::find($id);
+        Storage::delete('public/backend/' . $data->image); //delete image
+        $data->delete();
+
+        return response()->json([
+            'message' => 'Data artikel berhasil dihapus'
+        ]);
     }
 }

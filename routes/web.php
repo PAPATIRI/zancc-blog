@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
+
+Route::get('/', [\App\Http\Controllers\Frontend\HomeController::class, 'index']);
 
 Route::middleware('auth')->group(function () {
     Route::get("/dashboard", [\App\Http\Controllers\Backend\DashboardController::class, 'index']);

@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('articles', \App\Http\Controllers\Backend\ArticleController::class);
     Route::resource("categories", \App\Http\Controllers\Backend\CategoryController::class)->only([
         'index', 'store', 'update', 'destroy'
-    ]);
+    ])->middleware('UserAccess:1');
     Route::resource('/users', \App\Http\Controllers\Backend\UserController::class);
     Route::group(['prefix' => 'laravel-filemanager'], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();

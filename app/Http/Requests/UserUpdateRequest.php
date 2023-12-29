@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserUpdateRequest extends FormRequest
 {
@@ -25,6 +26,7 @@ class UserUpdateRequest extends FormRequest
             "name" => "required|min:3",
             "email" => "required|email",
             "password" => "nullable|min:8|confirmed",
+            "role"=> "nullable",
             "password_confirmation" => "nullable|min:8|required_with:password"
         ];
     }

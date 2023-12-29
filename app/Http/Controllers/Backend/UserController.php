@@ -10,13 +10,20 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        if (auth()->user()->role == 1) {
+            $user = User::latest()->get();
+        } else {
+            $user = User::whereId(auth()->user()->role)->get();
+        }
         return view('backend.user.index', [
-            'users'=>User::latest()->get()
+            'users' => $user
         ]);
     }
 
-    public function store(UserRequest $request){
+    public function store(UserRequest $request)
+    {
         $data = $request->validated();
         $data['password'] = bcrypt($data['password']);
 
@@ -24,25 +31,27 @@ class UserController extends Controller
         return back()->with('success', 'berhasil mendaftarkan user baru');
     }
 
-    public function update(UserUpdateRequest $request, $id){
+    public function update(UserUpdateRequest $request, $id)
+    {
         $data = $request->validated();
-        if($data['password'] != ''){
+        if ($data['password'] != '') {
             $data['password'] = bcrypt($data['password']);
             User::find($id)->update($data);
-        }else{
+        } else {
             User::find($id)->update([
-                'name'=>$request->name,
-                'email'=>$request->email,
+                'name' => $request->name,
+                'email' => $request->email,
             ]);
         }
         return back()->with('success', 'berhasil mengubah data user');
     }
 
-    public function destroy(string $id){
+    public function destroy(string $id)
+    {
         User::find($id)->delete();
 
         return response()->json([
-            "message"=>"sukses menghapus data user"
+            "message" => "sukses menghapus data user"
         ]);
     }
 }

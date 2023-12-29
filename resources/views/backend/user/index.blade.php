@@ -9,8 +9,11 @@
                     <li class="breadcrumb-item active" aria-current="page">Users</li>
                 </ol>
             </nav>
-            <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#modalCreate">Tambah User
-            </button>
+            @if(auth()->user()->role == 1)
+                <button class="btn btn-success my-2" data-bs-toggle="modal" data-bs-target="#modalCreate">Registrasi
+                    User Baru
+                </button>
+            @endif
 
             {{--error validation message--}}
             @if ($errors->any())
@@ -32,6 +35,7 @@
                         <td>no</td>
                         <td>nama</td>
                         <td>email</td>
+                        <td>role</td>
                         <td>create at</td>
                         <td>function</td>
                     </tr>
@@ -42,15 +46,32 @@
                             <td>{{$loop->iteration}}</td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
+                            <td>{{$user->role}}</td>
                             <td>{{$user->created_at}}</td>
                             <td class="d-flex gap-3 justify-content-start">
-                                <button class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#modalUpdate{{$user->id}}">
+                                <button class="btn btn-secondary" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#modalUpdate{{$user->id}}">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <a href="#" class="btn btn-danger" onClick="deleteUser(this)"
-                                   data-id="{{$user->id}}">
-                                    <i class="bi bi-trash"></i>
-                                </a>
+                                @if(auth()->user()->role == $user->id && auth()->user()->role != 1)
+                                    <a href="#" class="btn btn-success" onClick="showAccount(this)"
+                                       data-id="{{$user->id}}">
+                                        <i class="bi bi-person-check"></i>
+                                    </a>
+                                @endif
+                                @if(auth()->user()->role == 1)
+                                    @if($user->id != auth()->user()->id)
+                                        <a href="#" class="btn btn-danger" onClick="deleteUser(this)"
+                                           data-id="{{$user->id}}">
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    @else
+                                        <a href="#" class="btn btn-success" onClick="showAccount(this)"
+                                           data-id="{{$user->id}}">
+                                            <i class="bi bi-person-check"></i>
+                                        </a>
+                                    @endif
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -76,6 +97,18 @@
                         'icon': 'success',
                         'showConfirmButton': false,
                         'timer': 1500
+                    })
+                }
+
+                function showAccount(e){
+                    let id = e.getAttribute('data-id')
+
+                    Swal.fire({
+                        'title': 'Hello!',
+                        'text': "in adalah account anda saat ini",
+                        'icon': 'success',
+                        'showConfirmButton': false,
+                        'timer': 1800
                     })
                 }
 

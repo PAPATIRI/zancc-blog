@@ -70,7 +70,9 @@
                     </a>
                     <ul class="dropdown-menu shadow dropdown-menu-dark">
                         <li><a href="{{url('articles')}}" class="dropdown-item">artikel</a></li>
-                        <li><a href="{{url('categories')}}" class="dropdown-item">kategori</a></li>
+                        @if(auth()->user()->role == 1)
+                            <li><a href="{{url('categories')}}" class="dropdown-item">kategori</a></li>
+                        @endif
                     </ul>
                 </div>
                 <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
@@ -95,11 +97,11 @@
         </div>
     </nav>
 
-{{--content--}}
-@yield("content")
-<div>
-    <div style="height: 150px"></div>
-</div>
+    {{--content--}}
+    @yield("content")
+    <div>
+        <div style="height: 150px"></div>
+    </div>
 
 @stack('js')
 </body>

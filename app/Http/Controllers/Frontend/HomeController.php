@@ -10,11 +10,23 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
+        $keyword = \request()->keyword;
+        if ($keyword) {
+            $article = Article::with('Category')
+                ->whereStatus(1)
+                ->where('title', 'like', '%' . $keyword . '%')
+                ->latest()
+                ->simplePaginate(4);
+        } else {
+            $article = Article::with('Category')->whereStatus(1)->latest()->simplePaginate(4);
+        }
+
         return view('frontend.home.index', [
-            'latest_post'=>Article::latest()->first(),
-            'articles'=>Article::latest()->get(),
-            'categories'=>Category::latest()->get()
+            'latest_post' => Article::latest()->first(),
+            'articles' => $article,
+            'categories' => Category::latest()->get()
         ]);
     }
 }

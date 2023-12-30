@@ -3,11 +3,11 @@
     <!-- Page header with logo and tagline-->
     <header class="py-5 bg-light border-bottom mb-4">
         <div class="container">
-            <div class="text-center my-5">
-                <h1 class="fw-bolder">Welcome to Blog Home!</h1>
-                <p class="lead mb-0">
-                    A Bootstrap 5 starter layout for your next blog homepage
-                </p>
+            <div class="text-center my-2">
+                <h1 class="fw-bolder">Welcome to my personal blog <span class="custom-animation">👋</span></h1>
+                <p class="lead mb-0 mt-1 mt-md-3 mt-lg-5">Ilmu adalah buruan dan tulisan adalah ikatannya, maka ikatlah
+                    buruanmu dengan tali yang kuat</p>
+                <p class="fw-light mt-2">~Imam Syafi'i~</p>
             </div>
         </div>
     </header>
@@ -17,18 +17,21 @@
             <!-- Blog entries-->
             <div class="col-lg-8">
                 <!-- Featured blog post-->
-                <div class="card mb-4">
-                    <a href="#!"
-                    ><img
-                                class="card-img-top"
+                <div class="card mb-4 shadow-sm">
+                    <a href="{{url('post/'.$latest_post->slug)}}" class="overflow-hidden">
+                        <img
+                                class="card-img-top custom-featured-img custom-img-hover"
                                 src="{{asset('storage/backend/'.$latest_post->image)}}"
-                                alt="..."
-                        /></a>
+                                alt="post thumbnail"
+                        />
+                    </a>
                     <div class="card-body">
-                        <div class="small text-muted">{{$latest_post->created_at->format('d M Y')}}</div>
-                        <h2 class="card-title">{{$latest_post->title}}</h2>
-                        <p class="card-text">{{\Illuminate\Support\Str::limit(strip_tags($latest_post->desc), 200, '...')}}</p>
-                        <a class="btn btn-dark" href="#!">Read more →</a>
+                        <div class="small text-muted mb-2">{{$latest_post->created_at->format('d M Y')}} <a
+                                    href="{{url('category/'.$latest_post->Category->slug)}}"
+                                    class="text-decoration-none">{{$latest_post->Category->name}}</a>
+                        </div>
+                        <a href="{{url('post/'.$latest_post->slug)}}" class="card-title h3 text-decoration-none custom-title">{{$latest_post->title}}</a>
+                        <p class="card-text mt-1">{{\Illuminate\Support\Str::limit(strip_tags($latest_post->desc), 200, '...')}}</p>
                     </div>
                 </div>
                 <!-- Nested row for non-featured blog posts-->
@@ -36,46 +39,29 @@
                     @foreach($articles as $article)
                         <div class="col-lg-6">
                             <!-- Blog post-->
-                            <div class="card mb-4">
-                                <a href="#!"
+                            <div class="card shadow-sm mb-4">
+                                <a href="{{url("post/".$article->slug)}}" class="overflow-hidden"
                                 ><img
-                                            class="card-img-top"
+                                            class="card-img-top custom-post-img custom-img-hover"
                                             src="{{asset('storage/backend/'.$article->image)}}"
                                             alt="post thumb"
                                     /></a>
                                 <div class="card-body">
-                                    <div class="small text-muted">{{$article->created_at->format('d M Y')}}</div>
-                                    <h2 class="card-title h4">{{$article->title}}</h2>
-                                    <p class="card-text">{{\Illuminate\Support\Str::limit(strip_tags($latest_post->desc), 200, '...')}}</p>
-                                    <a class="btn btn-dark" href="#!">Read more →</a>
+                                    <div class="small text-muted mb-2">{{$article->created_at->format('d M Y')}} <a
+                                                href="{{url('category/'.$article->Category->slug)}}"
+                                                class="text-decoration-none">{{$article->Category->name}}</a>
+                                    </div>
+                                    <a href="{{url('post/'.$article->slug)}}"
+                                       class="card-title h4 text-decoration-none custom-title">{{$article->title}}</a>
+                                    <p class="card-text mt-1">{{\Illuminate\Support\Str::limit(strip_tags($latest_post->desc), 200, '...')}}</p>
                                 </div>
                             </div>
                         </div>
                     @endforeach
                 </div>
-                <!-- Pagination-->
-                <nav aria-label="Pagination">
-                    <hr class="my-0"/>
-                    <ul class="pagination justify-content-center my-4">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
-                            >Newer</a
-                            >
-                        </li>
-                        <li class="page-item active" aria-current="page">
-                            <a class="page-link" href="#!">1</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#!">...</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#!">Older</a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="pagination justify-content-center my-4">
+                    {{$articles->links()}}
+                </div>
             </div>
             {{--side widget--}}
             @include('frontend.layout.side-widget')

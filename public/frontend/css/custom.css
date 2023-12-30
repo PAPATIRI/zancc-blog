@@ -1,0 +1,81 @@
+.custom-featured-img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.custom-post-img{
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+.custom-detail-post-img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.custom-img-hover:hover{
+    scale: 1.1;
+    transition-duration: .5s;
+}
+
+.custom-title{
+    color: #1a1d20;
+}
+
+.custom-title:hover{
+    color: #0d6efd;
+    transition-duration: .5s;
+}
+
+.custom-post-writer{
+    font-size: 14px;
+}
+
+.custom-post-wrapper{
+    padding: 10px 10%;
+
+}
+.custom-post-content{
+    font-size: 20px;
+    line-height: 32px;
+}
+
+@keyframes handAnimation {
+    0% {
+        transform: rotate( 0.0deg)
+    }
+    10% {
+        transform: rotate(14.0deg)
+    }
+    20% {
+        transform: rotate(-8.0deg)
+    }
+    30% {
+        transform: rotate(14.0deg)
+    }
+    40% {
+        transform: rotate(-4.0deg)
+    }
+    50% {
+        transform: rotate(10.0deg)
+    }
+    60% {
+        transform: rotate( 0.0deg)
+    }
+    100% {
+        transform: rotate( 0.0deg)
+    }
+}
+
+.custom-animation{
+    position: relative;
+    animation-name: handAnimation;
+    animation-duration: 3s;
+    transform-origin: 70% 70%;
+    display: inline-block;
+    animation-iteration-count: infinite;
+}
+
+

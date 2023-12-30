@@ -20,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [\App\Http\Controllers\Frontend\HomeController::class, 'index']);
+Route::post('/articles/search', [\App\Http\Controllers\Frontend\HomeController::class, 'index']);
+Route::get('/post/{slug}', [\App\Http\Controllers\Frontend\ArticleController::class, 'show']);
 
 Route::middleware('auth')->group(function () {
     Route::get("/dashboard", [\App\Http\Controllers\Backend\DashboardController::class, 'index']);

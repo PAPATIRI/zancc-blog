@@ -15,10 +15,10 @@
     <div class="container">
         <div class="row">
             <!-- Blog entries-->
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <!-- Featured blog post-->
                 <div class="card mb-4 shadow-sm">
-                    <a href="{{url('post/'.$latest_post->slug)}}" class="overflow-hidden">
+                    <a href="{{url('posts/'.$latest_post->slug)}}" class="overflow-hidden">
                         <img
                                 class="card-img-top custom-featured-img custom-img-hover"
                                 src="{{asset('storage/backend/'.$latest_post->image)}}"
@@ -30,35 +30,35 @@
                                     href="{{url('category/'.$latest_post->Category->slug)}}"
                                     class="text-decoration-none">{{$latest_post->Category->name}}</a>
                         </div>
-                        <a href="{{url('post/'.$latest_post->slug)}}" class="card-title h3 text-decoration-none custom-title">{{$latest_post->title}}</a>
+                        <a href="{{url('posts/'.$latest_post->slug)}}"
+                           class="card-title h3 text-decoration-none custom-title">{{$latest_post->title}}</a>
                         <p class="card-text mt-1">{{\Illuminate\Support\Str::limit(strip_tags($latest_post->desc), 200, '...')}}</p>
                     </div>
                 </div>
                 <!-- Nested row for non-featured blog posts-->
-                <div class="row">
+                <div class="d-flex gap-3 flex-wrap justify-content-center">
                     @foreach($articles as $article)
-                        <div class="col-lg-6">
-                            <!-- Blog post-->
-                            <div class="card shadow-sm mb-4">
-                                <a href="{{url("post/".$article->slug)}}" class="overflow-hidden"
-                                ><img
-                                            class="card-img-top custom-post-img custom-img-hover"
-                                            src="{{asset('storage/backend/'.$article->image)}}"
-                                            alt="post thumb"
-                                    /></a>
-                                <div class="card-body">
-                                    <div class="small text-muted mb-2">{{$article->created_at->format('d M Y')}} <a
-                                                href="{{url('category/'.$article->Category->slug)}}"
-                                                class="text-decoration-none">{{$article->Category->name}}</a>
-                                    </div>
-                                    <a href="{{url('post/'.$article->slug)}}"
-                                       class="card-title h4 text-decoration-none custom-title">{{$article->title}}</a>
-                                    <p class="card-text mt-1">{{\Illuminate\Support\Str::limit(strip_tags($latest_post->desc), 200, '...')}}</p>
+                        <!-- Blog post-->
+                        <div class="card shadow-sm mb-4" style="width: 300px">
+                            <a href="{{url("posts/".$article->slug)}}" class="overflow-hidden"
+                            ><img
+                                        class="card-img-top custom-post-img custom-img-hover"
+                                        src="{{asset('storage/backend/'.$article->image)}}"
+                                        alt="post thumb"
+                                /></a>
+                            <div class="card-body">
+                                <div class="small text-muted mb-2">{{$article->created_at->format('d M Y')}} <a
+                                            href="{{url('category/'.$article->Category->slug)}}"
+                                            class="text-decoration-none">{{$article->Category->name}}</a>
                                 </div>
+                                <a href="{{url('posts/'.$article->slug)}}"
+                                   class="card-title h4 text-decoration-none custom-title">{{$article->title}}</a>
+                                <p class="card-text mt-1">{{\Illuminate\Support\Str::limit(strip_tags($article->desc), 160, '...')}}</p>
                             </div>
                         </div>
                     @endforeach
                 </div>
+                <div style="height: 300px"></div>
                 <div class="pagination justify-content-center my-4">
                     {{$articles->links()}}
                 </div>

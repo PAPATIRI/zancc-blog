@@ -17,7 +17,7 @@
     <link href="{{asset("/frontend/css/custom.css")}}" rel="stylesheet"/>
     @stack('css')
 </head>
-<body>
+<body class="">
 @include('frontend.layout.navbar')
 {{--content--}}
 @yield('content')

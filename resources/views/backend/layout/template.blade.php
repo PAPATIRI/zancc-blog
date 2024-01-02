@@ -20,7 +20,7 @@
 <div id="wrapper">
     <nav class="navbar navbar-expand bg-dark">
         <div class="container">
-            <a href="#" class="navbar-brand text-light fs-4 fw-bold">zanccode</a>
+            <a href="{{url('/zancc-admin/dashboard')}}" class="navbar-brand text-light fs-4 fw-bold">zanccode</a>
             <div class="navbar-nav">
                 <div class="nav-item"></div>
                 <div class="nav-item dropdown">
@@ -32,7 +32,7 @@
                         <li class="px-3 pb-3">{{auth()->user()->email}}</li>
                         <li><a href="#" class="dropdown-item">profil</a></li>
                         <li><a href="#" class="dropdown-item">pengaturan</a></li>
-                        <li><a href="#" class="dropdown-item">tentang</a></li>
+                        <hr class="dropdown-divider">
                         <li>
                             <a class="dropdown-item text-bg-danger rounded opacity-75" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -57,7 +57,7 @@
         <div class="container d-flex align-items-center justify-content-center">
             <div class="navbar-nav d-flex flex-wrap flex-row gap-2 align-items-center justify-content-center w-100">
                 <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
-                    <a href="{{url('dashboard')}}" class="nav-link text-dark">
+                    <a href="{{url('zancc-admin/dashboard')}}" class="nav-link text-dark">
                         <i class="bi bi-house mx-2"></i>
                         Dashboard
                     </a>
@@ -69,9 +69,9 @@
                         Blog
                     </a>
                     <ul class="dropdown-menu shadow dropdown-menu-dark">
-                        <li><a href="{{url('articles')}}" class="dropdown-item">artikel</a></li>
+                        <li><a href="{{url('zancc-admin/articles')}}" class="dropdown-item">artikel</a></li>
                         @if(auth()->user()->role == 1)
-                            <li><a href="{{url('categories')}}" class="dropdown-item">kategori</a></li>
+                            <li><a href="{{url('zancc-admin/categories')}}" class="dropdown-item">kategori</a></li>
                         @endif
                     </ul>
                 </div>
@@ -88,7 +88,7 @@
                     </a>
                 </div>
                 <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
-                    <a href="{{url('users')}}" class="nav-link">
+                    <a href="{{url('zancc-admin/users')}}" class="nav-link">
                         <i class="bi bi-people mx-2 text-dark"></i>
                         Users
                     </a>

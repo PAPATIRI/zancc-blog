@@ -168,6 +168,9 @@ return [
         /*
          * Application Service Providers...
          */
+        // custom providers
+        App\Providers\SideWidgetProvider::class,
+        //default provider
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

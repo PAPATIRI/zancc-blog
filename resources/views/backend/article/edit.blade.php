@@ -107,7 +107,7 @@
 
     @push('js')
         <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-        <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+        <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
 
         <script>
             var options = {
@@ -117,7 +117,7 @@
                 filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token=',
                 clipboard_handleImages: false
             }
-            CKEDITOR.replace('myEditor', options);
+            CKEDITOR.replace( 'myEditor', options );
 
             $('#image').change(function () {
                 previewImage(this)

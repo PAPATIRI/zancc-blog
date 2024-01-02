@@ -1,24 +1,14 @@
 @extends('frontend.layout.layout')
-@section('title', 'zanccode | artikel')
+@section('title', 'zanccode | '.$category)
 @section('content')
     <div class="container">
-        <div class="mb-3 p-4 d-flex align-items-center justify-content-center">
-            <form class="shadow-sm w-50" action="{{url('/posts/search')}}" method="post">
-                @csrf
-                <div class="input-group">
-                    <input
-                            class="form-control"
-                            type="text"
-                            name="keyword"
-                            placeholder="ketik kata kunci dan tekan enter"
-                    />
-                </div>
-            </form>
-        </div>
-        @if($keyword)
-            <p class="text-center">menampilkan hasil pencarian untuk <b>{{$keyword}}</b></p>
+        @if($category)
+            <div class="w-100 my-3">
+                <p class="fs-3 text-center text-black text-capitalize"><i class="bi bi-rss"></i><b> {{$category}}</b>
+                </p>
+            </div>
         @endif
-        <div class="d-flex gap-3 justify-content-center flex-wrap" id="article-wrapper">
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
             @forelse($articles as $article)
                 <div class="card shadow" style="width: 350px">
                     <div class="card-body">
@@ -35,11 +25,11 @@
                 </div>
             @empty
                 <div class="p-5 my-5 rounded bg-warning w-100">
-                    <h3 class="text-center">artikel yang kamu cari tidak tersedia</h3>
+                    <h3 class="text-center">artikel dengan kategori {{$category}} belum tersedia</h3>
                 </div>
             @endforelse
         </div>
-        <div style="height: 300px"></div>
+        <div style="height: 420px"></div>
         <div class="pagination justify-content-center my-4">
             {{$articles->links()}}
         </div>

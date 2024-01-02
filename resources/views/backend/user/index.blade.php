@@ -5,7 +5,8 @@
         <div class="my-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{url('dashboard')}}"><i class="bi bi-house"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{url('zancc-admin/dashboard')}}"><i
+                                    class="bi bi-house"></i></a></li>
                     <li class="breadcrumb-item active" aria-current="page">Users</li>
                 </ol>
             </nav>
@@ -100,7 +101,7 @@
                     })
                 }
 
-                function showAccount(e){
+                function showAccount(e) {
                     let id = e.getAttribute('data-id')
 
                     Swal.fire({
@@ -131,7 +132,7 @@
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 },
                                 type: 'DELETE',
-                                url: '/users/' + id,
+                                url: '/zancc-admin/users/' + id,
                                 dataType: 'json',
                                 success: function (response) {
                                     Swal.fire({
@@ -141,7 +142,7 @@
                                         showConfirmButton: false,
                                         timer: 1500
                                     }).then((result) => {
-                                        window.location.href = '/users'
+                                        window.location.href = '/zancc-admin/users'
                                     })
                                 },
                                 error: function (xhr, ajaxOptions, thrownError) {

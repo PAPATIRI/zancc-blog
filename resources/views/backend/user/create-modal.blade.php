@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{url('users')}}" method="post">
+                <form action="{{url('zancc-admin/users')}}" method="post">
                     @csrf
                     <div class="mb-3">
                         <label for="name">nama user</label>

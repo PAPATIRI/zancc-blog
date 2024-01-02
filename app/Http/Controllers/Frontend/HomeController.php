@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
 
 class HomeController extends Controller
 {
@@ -26,7 +27,11 @@ class HomeController extends Controller
         return view('frontend.home.index', [
             'latest_post' => Article::latest()->first(),
             'articles' => $article,
-            'categories' => Category::latest()->get()
         ]);
+    }
+
+    public function about()
+    {
+        return view('frontend.home.about');
     }
 }

@@ -1,13 +1,15 @@
 @extends('frontend.layout.layout')
+@section('title', 'zanccode | beranda')
 @section('content')
     <!-- Page header with logo and tagline-->
-    <header class="py-5 bg-light border-bottom mb-4">
+    <header class="bg-transparent border-bottom mb-4 py-4">
         <div class="container">
             <div class="text-center my-2">
-                <h1 class="fw-bolder">Welcome to my personal blog <span class="custom-animation">👋</span></h1>
-                <p class="lead mb-0 mt-1 mt-md-3 mt-lg-5">Ilmu adalah buruan dan tulisan adalah ikatannya, maka ikatlah
+                <h1 class="fw-bolder fs-1">Welcome to my personal blog <span class="custom-animation">👋</span></h1>
+                <p class="lead fs-4 mb-0 mt-1 mt-md-3 mt-lg-3">Ilmu adalah buruan dan tulisan adalah ikatannya, maka
+                    ikatlah
                     buruanmu dengan tali yang kuat</p>
-                <p class="fw-light mt-2">~Imam Syafi'i~</p>
+                <p class="fw-light fs-6 mt-2">~Imam Syafi'i~</p>
             </div>
         </div>
     </header>
@@ -15,48 +17,28 @@
     <div class="container">
         <div class="row">
             <!-- Blog entries-->
-            <div class="col-lg-9">
-                <!-- Featured blog post-->
-                <div class="card mb-4 shadow-sm">
-                    <a href="{{url('posts/'.$latest_post->slug)}}" class="overflow-hidden">
-                        <img
-                                class="card-img-top custom-featured-img custom-img-hover"
-                                src="{{asset('storage/backend/'.$latest_post->image)}}"
-                                alt="post thumbnail"
-                        />
-                    </a>
-                    <div class="card-body">
-                        <div class="small text-muted mb-2">{{$latest_post->created_at->format('d M Y')}} <a
-                                    href="{{url('category/'.$latest_post->Category->slug)}}"
-                                    class="text-decoration-none">{{$latest_post->Category->name}}</a>
-                        </div>
-                        <a href="{{url('posts/'.$latest_post->slug)}}"
-                           class="card-title h3 text-decoration-none custom-title">{{$latest_post->title}}</a>
-                        <p class="card-text mt-1">{{\Illuminate\Support\Str::limit(strip_tags($latest_post->desc), 200, '...')}}</p>
-                    </div>
-                </div>
-                <!-- Nested row for non-featured blog posts-->
+            <div class="col-lg-8">
                 <div class="d-flex gap-3 flex-wrap justify-content-center">
-                    @foreach($articles as $article)
+                    @forelse($articles as $article)
                         <!-- Blog post-->
-                        <div class="card shadow-sm mb-4" style="width: 300px">
-                            <a href="{{url("posts/".$article->slug)}}" class="overflow-hidden"
-                            ><img
-                                        class="card-img-top custom-post-img custom-img-hover"
-                                        src="{{asset('storage/backend/'.$article->image)}}"
-                                        alt="post thumb"
-                                /></a>
+                        <div class="card shadow" style="width: 350px">
                             <div class="card-body">
-                                <div class="small text-muted mb-2">{{$article->created_at->format('d M Y')}} <a
-                                            href="{{url('category/'.$article->Category->slug)}}"
-                                            class="text-decoration-none">{{$article->Category->name}}</a>
+                                <div class="text-muted mb-2 d-flex justify-content-between align-items-center w-100">
+                                    <p class="fs-6 m-0">{{ \Carbon\Carbon::parse($article->created_at)->formatLocalized('%d %B %Y') }}</p>
+                                    <a href="{{url('category/'.$article->Category->slug)}}"
+                                       class="text-decoration-none">{{$article->Category->name}}</a>
                                 </div>
                                 <a href="{{url('posts/'.$article->slug)}}"
-                                   class="card-title h4 text-decoration-none custom-title">{{$article->title}}</a>
-                                <p class="card-text mt-1">{{\Illuminate\Support\Str::limit(strip_tags($article->desc), 160, '...')}}</p>
+                                   class="card-title h3 fs-4 text-decoration-none custom-title">{{\Illuminate\Support\Str::limit($article->title,55)}}</a>
+                                <hr class="card-divider my-3 p-0">
+                                <p>{{\Illuminate\Support\Str::limit(str_replace('&nbsp;', ' ', strip_tags($article->desc)), 100)}}</p>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="p-5 my-5 rounded bg-warning w-100">
+                            <h3 class="text-center fs-3">artikel yang kamu cari tidak tersedia</h3>
+                        </div>
+                    @endforelse
                 </div>
                 <div style="height: 300px"></div>
                 <div class="pagination justify-content-center my-4">

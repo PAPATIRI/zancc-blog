@@ -5,8 +5,8 @@
         <div class="my-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{url('dashboard')}}"><i class="bi bi-house"></i></a></li>
-                    <li class="breadcrumb-item active"><a href="{{url("articles")}}" style="text-decoration: none">Article</a>
+                    <li class="breadcrumb-item"><a href="{{url('zancc-admin/dashboard')}}"><i class="bi bi-house"></i></a></li>
+                    <li class="breadcrumb-item active"><a href="{{url("zancc-admin/articles")}}" style="text-decoration: none">Article</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Detail Artikel</li>
                 </ol>

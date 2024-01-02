@@ -16,7 +16,7 @@
                         <div class="card-body">
                             <h5 class="card-title fs-4 fw-bold">{{$total_articles}} Artikel</h5>
                             <p class="card-text mt-3">
-                                <a href="{{url('/articles')}}"
+                                <a href="{{url('zancc-admin/articles')}}"
                                    class="nav-link shadow-sm text-dark fw-light bg-dark-subtle p-1 rounded w-25 text-center">selengkapnya</a>
                             </p>
                         </div>
@@ -28,7 +28,7 @@
                         <div class="card-body">
                             <h5 class="card-title fs-4 fw-bold">{{$total_categories}} Kategori</h5>
                             <p class="card-text mt-3">
-                                <a href="{{url('/categories')}}"
+                                <a href="{{url('zancc-admin/categories')}}"
                                    class="nav-link shadow-sm text-dark fw-light bg-dark-subtle p-1 rounded w-25 text-center">selengkapnya</a>
                             </p>
                         </div>
@@ -57,7 +57,7 @@
                                     <td>{{$article->Category->name}}</td>
                                     <td>{{$article->created_at}}</td>
                                     <td>
-                                        <a href="{{url('articles/'.$article->id)}}"
+                                        <a href="{{url('zancc-admin/articles/'.$article->id)}}"
                                            class="btn btn-sm bg-success-subtle">detail</a>
                                     </td>
                                 </tr>
@@ -87,7 +87,7 @@
                                     <td>{{$article->views}}</td>
                                     <td>{{$article->created_at}}</td>
                                     <td>
-                                        <a href="{{url('articles/'.$article->id)}}"
+                                        <a href="{{url('zancc-admin/articles/'.$article->id)}}"
                                            class="btn btn-sm bg-success-subtle">detail</a>
                                     </td>
                                 </tr>

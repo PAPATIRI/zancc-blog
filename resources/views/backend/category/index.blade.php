@@ -5,7 +5,7 @@
         <div class="my-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{url('dashboard')}}"><i class="bi bi-house"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{url('zancc-admin/dashboard')}}"><i class="bi bi-house"></i></a></li>
                     <li class="breadcrumb-item active" aria-current="page">Kategori</li>
                 </ol>
             </nav>
@@ -100,7 +100,7 @@
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 },
                                 type: 'DELETE',
-                                url: '/categories/' + id,
+                                url: '/zancc-admin/categories/' + id,
                                 dataType: 'json',
                                 success: function (response) {
                                     Swal.fire({
@@ -110,7 +110,7 @@
                                         showConfirmButton: false,
                                         timer: 1500
                                     }).then((result) => {
-                                        window.location.href = '/categories'
+                                        window.location.href = '/zancc-admin/categories'
                                     })
                                 },
                                 error: function (xhr, ajaxOptions, thrownError) {

@@ -8,11 +8,12 @@
         <div class="my-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{url('dashboard')}}"><i class="bi bi-house"></i></a></li>
+                    <li class="breadcrumb-item"><a href="{{url('zancc-admin/dashboard')}}"><i
+                                    class="bi bi-house"></i></a></li>
                     <li class="breadcrumb-item active" aria-current="page">Artikel</li>
                 </ol>
             </nav>
-            <a href="{{url('articles/create')}}" class="btn btn-success my-2">Tambah Artikel
+            <a href="{{url('zancc-admin/articles/create')}}" class="btn btn-success my-2">Tambah Artikel
             </a>
 
             {{--error validation message--}}
@@ -85,7 +86,7 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             type: 'DELETE',
-                            url: '/articles/' + id,
+                            url: '/zancc-admin/articles/' + id,
                             dataType: 'json',
                             success: function (response) {
                                 Swal.fire({
@@ -93,7 +94,7 @@
                                     text: response.message,
                                     icon: 'success'
                                 }).then((result) => {
-                                    window.location.href = '/articles'
+                                    window.location.href = '/zancc-admin/articles'
                                 })
                             },
                             error: function (xhr, ajaxOptions, thrownError) {

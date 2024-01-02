@@ -29,9 +29,9 @@
                                        class="text-decoration-none">{{$article->Category->name}}</a>
                                 </div>
                                 <a href="{{url('posts/'.$article->slug)}}"
-                                   class="card-title h3 fs-4 text-decoration-none custom-title">{{\Illuminate\Support\Str::limit($article->title,55)}}</a>
+                                   class="card-title h3 fs-4 fw-medium text-decoration-none custom-title">{{\Illuminate\Support\Str::limit($article->title,55)}}</a>
                                 <hr class="card-divider my-3 p-0">
-                                <p>{{\Illuminate\Support\Str::limit(str_replace('&nbsp;', ' ', strip_tags($article->desc)), 100)}}</p>
+                                <p class="fs-5">{{\Illuminate\Support\Str::limit(str_replace('&nbsp;', ' ', strip_tags($article->desc)), 100)}}</p>
                             </div>
                         </div>
                     @empty

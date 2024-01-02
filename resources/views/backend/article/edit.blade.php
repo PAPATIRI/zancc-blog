@@ -26,7 +26,7 @@
             @endif
 
             {{--form tambah artikel--}}
-            <form action="{{url('articles/'.$article->id)}}" method="post" enctype="multipart/form-data">
+            <form action="{{url('zancc-admin/articles/'.$article->id)}}" method="post" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <input type="hidden" name="oldImg" value="{{$article->image}}">

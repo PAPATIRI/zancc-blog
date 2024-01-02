@@ -33,10 +33,10 @@ class CategoryController extends Controller
             $category = $request->input('category');
 
             if ($category === 'all') {
-                $filteredArticles = Article::with('Category')->latest()->get(); // Ambil semua data artikel jika kategori adalah 'all'
+                $filteredArticles = Article::with('Category')->latest()->get();
             } else {
                 $filteredArticles = Article::with('Category')->whereHas('category', function ($query) use ($category) {
-                    $query->where('name', $category); // Ambil artikel berdasarkan nama kategori
+                    $query->where('name', $category);
                 })->latest()->get();
             }
 

@@ -26,7 +26,7 @@
             @endif
 
             {{--form tambah artikel--}}
-            <form action="{{url('articles')}}" method="post" enctype="multipart/form-data">
+            <form action="{{url('zancc-admin/articles')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-6">

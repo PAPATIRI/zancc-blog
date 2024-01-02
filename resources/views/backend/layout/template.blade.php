@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{str_replace('_', '-', app()->getLocale())}}">
 
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -30,9 +30,6 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow dropdown-menu-dark p-2">
                         <li class="px-3 pb-3">{{auth()->user()->email}}</li>
-                        <li><a href="#" class="dropdown-item">profil</a></li>
-                        <li><a href="#" class="dropdown-item">pengaturan</a></li>
-                        <hr class="dropdown-divider">
                         <li>
                             <a class="dropdown-item text-bg-danger rounded opacity-75" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -57,7 +54,7 @@
         <div class="container d-flex align-items-center justify-content-center">
             <div class="navbar-nav d-flex flex-wrap flex-row gap-2 align-items-center justify-content-center w-100">
                 <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
-                    <a href="{{url('zancc-admin/dashboard')}}" class="nav-link text-dark">
+                    <a href="{{url('zancc-admin/dashboard')}}" class="nav-link active">
                         <i class="bi bi-house mx-2"></i>
                         Dashboard
                     </a>
@@ -88,7 +85,7 @@
                     </a>
                 </div>
                 <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
-                    <a href="{{url('zancc-admin/users')}}" class="nav-link">
+                    <a href="{{url('zancc-admin/users')}}" class="nav-link active">
                         <i class="bi bi-people mx-2 text-dark"></i>
                         Users
                     </a>

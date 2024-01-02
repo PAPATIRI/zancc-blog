@@ -55,7 +55,7 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$article->title}}</td>
                                     <td>{{$article->Category->name}}</td>
-                                    <td>{{$article->created_at}}</td>
+                                    <td>{{ \Carbon\Carbon::parse($article->created_at)->formatLocalized('%d %b %y') }}</td>
                                     <td>
                                         <a href="{{url('zancc-admin/articles/'.$article->id)}}"
                                            class="btn btn-sm bg-success-subtle">detail</a>
@@ -85,7 +85,7 @@
                                     <td>{{$article->title}}</td>
                                     <td>{{$article->Category->name}}</td>
                                     <td>{{$article->views}}</td>
-                                    <td>{{$article->created_at}}</td>
+                                    <td>{{ \Carbon\Carbon::parse($article->created_at)->formatLocalized('%d %b %y') }}</td>
                                     <td>
                                         <a href="{{url('zancc-admin/articles/'.$article->id)}}"
                                            class="btn btn-sm bg-success-subtle">detail</a>

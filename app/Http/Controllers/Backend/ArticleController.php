@@ -82,7 +82,7 @@ class ArticleController extends Controller
 
         Article::create($data);
 
-        return redirect(url('articles'))->with('success', 'sebuah artikel berhasil dibuat');
+        return redirect(url('zancc-admin/articles'))->with('success', 'sebuah artikel berhasil dibuat');
 
     }
 
@@ -129,7 +129,7 @@ class ArticleController extends Controller
 
         Article::find($id)->update($data);
 
-        return redirect(url('articles'))->with('success', 'sebuah artikel berhasil diubah');
+        return redirect(url('zancc-admin/articles'))->with('success', 'sebuah artikel berhasil diubah');
     }
 
     /**

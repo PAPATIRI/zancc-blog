@@ -5,7 +5,6 @@
         <div class="row my-3">
             <div class="card shadow-sm p-3 col-12 col-lg-8">
                 <div class="rounded overflow-hidden">
-                    <p class="h1 fs-2 fw-bold text-dark w-100">{{$article->title}}</p>
                     <div class="d-flex align-items-center gap-2 py-2 justify-content-between">
                         <p class="text-secondary m-0 fs-6 fw-medium">{{ \Carbon\Carbon::parse($article->created_at)->formatLocalized('%d %B %Y') }}</p>
                         <div class="d-flex align-items-center gap-3">
@@ -17,6 +16,8 @@
                             </p>
                         </div>
                     </div>
+                    <hr class="card-divider mt-1 mb-3">
+                    <p class="h1 fs-2 fw-bold text-dark w-100">{{$article->title}}</p>
                 </div>
                 <div class="overflow-hidden rounded bg-warning" style="min-height: 200px; max-height: 350px">
                     <img src="{{asset('storage/backend/'.$article->image)}}"

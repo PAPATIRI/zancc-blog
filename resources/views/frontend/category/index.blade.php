@@ -2,21 +2,33 @@
 {{--@section('title', 'zanccode | '.$category)--}}
 @section('content')
     <div class="container">
-        {{--filter by category--}}
-        <div class="d-flex justify-content-center my-3">
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check filter-radio" name="btnradio" id="btnradio1" data-filter="all"
-                       autocomplete="off" value="all" checked>
-                <label class="btn btn-outline-secondary filter-btn" for="btnradio1">Semua</label>
-                @foreach($categories as $category)
-                    <input type="radio" class="btn-check filter-radio" value="{{$category->name}}" name="btnradio"
-                           id="btnradio1.{{$category->slug}}"
-                           autocomplete="off" data-filter="{{$category->name}}">
-                    <label class="btn btn-outline-secondary filter-btn"
-                           for="btnradio1.{{$category->slug}}">{{$category->name}}</label>
-                @endforeach
+        <div class="mx-5 mb-4">
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <form action="{{url('/category/search')}}" method="post" class="w-75 mb-2">
+                    @csrf
+                    <div class="input-group">
+                        <input
+                                class="form-control"
+                                type="text"
+                                name="keyword"
+                                placeholder="ketik kata kunci dan tekan enter"
+                        />
+                    </div>
+                </form>
+                <div class="d-flex gap-2 flex-column w-75">
+                    <p class="fs-6 fw-light text-muted my-0">pilih kategori:</p>
+                    <div class="d-flex gap-2 align-items-center">
+                        @foreach($categories as $category)
+                            <a href="{{url('category/'.$category->slug)}}"
+                               class="text-decoration-none py-1 px-2 bg-dark-subtle text-dark rounded">{{$category->name}}</a>
+                        @endforeach
+                    </div>
+                </div>
             </div>
         </div>
+        @if($keyword)
+            <p class="text-center fs-6">hasil pencarian dengan kata kunci <b>{{$keyword}}</b></p>
+        @endif
         <div class="d-flex gap-3 justify-content-center flex-wrap" id="articles-wrapper">
             @forelse($articles as $article)
                 <div class="card shadow" style="width: 350px">
@@ -27,9 +39,9 @@
                                class="text-decoration-none">{{$article->Category->name}}</a>
                         </div>
                         <a href="{{url('posts/'.$article->slug)}}"
-                           class="card-title h3 fs-4 text-decoration-none custom-title">{{\Illuminate\Support\Str::limit($article->title,55)}}</a>
+                           class="card-title h3 fs-5 fw-bold text-decoration-none custom-title">{{\Illuminate\Support\Str::limit($article->title,55)}}</a>
                         <hr class="card-divider my-3 p-0">
-                        <p>{{\Illuminate\Support\Str::limit(str_replace('&nbsp;', ' ', strip_tags($article->desc)), 100)}}</p>
+                        <p class="fs-5" >{{\Illuminate\Support\Str::limit(str_replace('&nbsp;', ' ', strip_tags($article->desc)), 100)}}</p>
                     </div>
                 </div>
             @empty
@@ -38,86 +50,8 @@
                 </div>
             @endforelse
         </div>
-        <div class="pagination justify-content-center my-4">
-            {{--            {{$articles->links()}}--}}
+        <div class="pagination fixed-bottom justify-content-center my-5 pb-3">
+            {{$articles->links()}}
         </div>
     </div>
-    @push('js')
-        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-        <script>
-            function limitText(text, limit) {
-                var cleanText = text.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ');
-                var trimmedText = cleanText.substring(0, limit);
-                if (cleanText.length > limit) {
-                    trimmedText += '...';
-                }
-                return trimmedText;
-            }
-
-            //fungsi format date ke bahasa indo
-            function formatDate(dateString) {
-                var date = new Date(dateString);
-                var options = {day: '2-digit', month: 'long', year: 'numeric'};
-                var formattedDate = date.toLocaleDateString('id-ID', options);
-
-                return formattedDate;
-            }
-
-
-            $(document).ready(function () {
-                $('.filter-radio').change(function () {
-                    var filter = $(this).data('filter')
-                    var csrfToken = $('meta[name="csrf-token"]').attr('content'); // Mendapatkan CSRF token
-                    console.log('filter : ', filter)
-
-                    $.ajax({
-                        url: '/category', // Ganti dengan URL endpoint di Laravel Anda
-                        method: 'POST',
-                        headers: {
-                            'X-CSRF-TOKEN': csrfToken
-                        },
-                        data: {
-                            category: filter
-                        },
-                        success: function (response) {
-                            if (response) {
-                                var articles = response.articles;
-
-                                if (articles.length > 0) {
-                                    var articleList = '';
-                                    articles.forEach(function (article) {
-                                        articleList += '<div class="card shadow" style="width: 350px">'
-                                        articleList += '<div class="card-body">'
-                                        articleList += '<div class="text-muted mb-2 d-flex justify-content-between align-items-center w-100">'
-                                        articleList += '<p class="fs-6 m-0">' + formatDate(article.created_at) + '</p>'
-                                        articleList += `<a href="{{url('category/')}}/${article.category.slug}" class="text-decoration-none">` + article.category.name + '</a>'
-                                        articleList += '</div>'
-                                        articleList += '<a href="{{url('posts/'.$article->slug)}}" class="card-title h3 fs-4 text-decoration-none custom-title">' + article.title + '</a>'
-                                        articleList += '<hr class="card-divider my-3 p-0">'
-                                        articleList += '<p>' + limitText(article.desc, 100) + '</p>'
-                                        articleList += '</div>'
-                                        articleList += '</div>';
-                                    });
-                                    $('#articles-wrapper').html(articleList);
-                                } else {
-                                    var emptyArticle = '<div class="p-5 my-5 rounded bg-warning w-100" id="warning-empty">'
-                                    emptyArticle += '<h3 class="text-center">artikel yang kamu cari tidak tersedia</h3>'
-                                    emptyArticle += '</div>'
-                                    // Masukkan hasil ke dalam elemen
-                                    $('#articles-wrapper').html(emptyArticle);
-                                }
-                            } else {
-                                console.error('empty response')
-                            }
-                        },
-                        error: function (xhr, status, error) {
-                            console.error(error);
-                        }
-                    });
-                });
-                var selectedFilter = $('input[name="btnradio"]:checked').val();
-                $('input[name="btnradio"][value="' + selectedFilter + '"]').prop('checked', true);
-            })
-        </script>
-    @endpush
 @endsection

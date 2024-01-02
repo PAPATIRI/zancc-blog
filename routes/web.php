@@ -10,10 +10,8 @@ Route::fallback(function () {
 Route::get('/', [\App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('/');
 Route::post('/posts/search', [\App\Http\Controllers\Frontend\HomeController::class, 'index']);
 Route::get('/posts/{slug}', [\App\Http\Controllers\Frontend\ArticleController::class, 'show']);
-//Route::get('/posts', [\App\Http\Controllers\Frontend\ArticleController::class, 'index'])->name('posts');
-//Route::post('/posts/search', [\App\Http\Controllers\Frontend\ArticleController::class, 'index']);
 Route::get('/category/{slug}',[\App\Http\Controllers\Frontend\CategoryController::class, 'show'] );
-Route::post('/category',[\App\Http\Controllers\Frontend\CategoryController::class, 'filterData'] );
+Route::post('/category/search',[\App\Http\Controllers\Frontend\CategoryController::class, 'index'] );
 Route::get('/category',[\App\Http\Controllers\Frontend\CategoryController::class, 'index'] );
 Route::get('/about',[\App\Http\Controllers\Frontend\HomeController::class, 'about'] )->name('about');
 Route::post('/posts', [\App\Http\Controllers\Frontend\ArticleController::class, 'filterData']);

@@ -12,8 +12,20 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
+        $keyword = \request()->keyword;
+        if ($keyword) {
+            $article = Article::with('Category')
+                ->whereStatus(1)
+                ->where('title', 'like', '%' . $keyword . '%')
+                ->latest()
+                ->simplePaginate(6);
+        } else {
+            $article = Article::with('Category')->whereStatus(1)->latest()->simplePaginate(6);
+        }
+
         return view('frontend.category.index', [
-            'articles' => Article::with('Category')->latest()->get()
+            'articles' => $article,
+            'keyword' => $keyword,
         ]);
     }
 
@@ -22,27 +34,9 @@ class CategoryController extends Controller
         return view('frontend.category.show', [
             'articles' => Article::with('Category')->whereHas('Category', function ($q) use ($slugCategory) {
                 $q->where('slug', $slugCategory);
-            })->whereStatus(1)->latest()->simplePaginate(4),
+            })->whereStatus(1)->latest()->simplePaginate(6),
             'category' => $slugCategory,
         ]);
     }
 
-    public function filterData(Request $request)
-    {
-        try {
-            $category = $request->input('category');
-
-            if ($category === 'all') {
-                $filteredArticles = Article::with('Category')->latest()->get();
-            } else {
-                $filteredArticles = Article::with('Category')->whereHas('category', function ($query) use ($category) {
-                    $query->where('name', $category);
-                })->latest()->get();
-            }
-
-            return response()->json(['articles' => $filteredArticles]);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
 }

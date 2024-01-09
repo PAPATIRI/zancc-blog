@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Auth::routes();
+Route::group(['prefix'=>'zancc-admin'], function(){
+    Auth::routes();
+});
+
 Route::fallback(function () {
     abort(404);
 });

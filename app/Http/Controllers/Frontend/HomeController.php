@@ -21,7 +21,7 @@ class HomeController extends Controller
                 ->latest()
                 ->simplePaginate(4);
         } else {
-            $article = Article::with('Category')->whereStatus(1)->latest()->simplePaginate(4);
+            $article = Article::with('Category')->whereStatus(1)->latest()->simplePaginate(6);
         }
 
         return view('frontend.home.index', [

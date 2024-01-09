@@ -12,21 +12,6 @@ class ArticleController extends Controller
 {
     public function index()
     {
-//        $keyword = \request()->keyword;
-//        if ($keyword) {
-//            $article = Article::with('Category')
-//                ->whereStatus(1)
-//                ->where('title', 'like', '%' . $keyword . '%')
-//                ->latest()
-//                ->simplePaginate(4);
-//        } else {
-//            $article = Article::with('Category')->whereStatus(1)->latest()->simplePaginate(4);
-//        }
-//
-//        return view('frontend.article.index', [
-//            'articles' => $article,
-//            'keyword' => $keyword,
-//        ]);
 
     }
 

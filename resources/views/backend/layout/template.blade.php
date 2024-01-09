@@ -73,18 +73,6 @@
                     </ul>
                 </div>
                 <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-person-workspace mx-2 text-dark"></i>
-                        Project
-                    </a>
-                </div>
-                <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
-                    <a href="#" class="nav-link">
-                        <i class="bi bi-images mx-2 text-dark"></i>
-                        galery
-                    </a>
-                </div>
-                <div class="nav-item bg-dark-subtle p-0 p-md-1 p-lg-3 flex-fill shadow-sm rounded">
                     <a href="{{url('zancc-admin/users')}}" class="nav-link active">
                         <i class="bi bi-people mx-2 text-dark"></i>
                         Users

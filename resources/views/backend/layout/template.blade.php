@@ -18,7 +18,7 @@
 <body id="page-top" class="bg-body-secondary">
 <!-- Page Wrapper -->
 <div id="wrapper">
-    <nav class="navbar navbar-expand bg-dark">
+    <nav class="navbar navbar-expand text-bg-dark">
         <div class="container">
             <a href="{{url('/zancc-admin/dashboard')}}" class="navbar-brand text-light fs-4 fw-bold">zanccode</a>
             <div class="navbar-nav">

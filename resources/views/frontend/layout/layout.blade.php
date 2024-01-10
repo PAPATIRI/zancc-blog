@@ -16,6 +16,8 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{asset("/frontend/css/styles.css")}}" rel="stylesheet"/>
     <link href="{{asset("/frontend/css/custom.css")}}" rel="stylesheet"/>
+    {{--aos library--}}
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @stack('css')
 </head>
@@ -33,13 +35,19 @@
 <footer class="py-3 bg-dark">
     <div class="container">
         <p class="m-0 text-center text-white fs-6">
-            copyright &copy; <a href="{{url('/')}}" class="text-decoration-none text-light m-0 p-0">zanccode</a> {{$current_year}}
+            copyright &copy; <a href="{{url('/')}}"
+                                class="text-decoration-none text-light m-0 p-0">zanccode</a> {{$current_year}}
         </p>
     </div>
 </footer>
 
 <!-- Core theme JS-->
 <script src="{{asset('frontend/js/scripts.js')}}"></script>
+{{--aos script library--}}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+    AOS.init();
+</script>
 @stack('js')
 </body>
 </html>

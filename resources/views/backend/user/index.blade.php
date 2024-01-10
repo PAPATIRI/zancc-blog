@@ -37,7 +37,6 @@
                         <td>nama</td>
                         <td>email</td>
                         <td>role</td>
-                        <td>create at</td>
                         <td>function</td>
                     </tr>
                     </thead>
@@ -48,7 +47,6 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->role}}</td>
-                            <td>{{$user->created_at}}</td>
                             <td class="d-flex gap-3 justify-content-start">
                                 <button class="btn btn-secondary" type="button" data-bs-toggle="modal"
                                         data-bs-target="#modalUpdate{{$user->id}}">

@@ -10,34 +10,34 @@
                 </ol>
             </nav>
             <div class="row">
-                <div class="col-6">
-                    <div class="card text-bg-secondary mb-3">
+                <div class="col-12 col-md-6">
+                    <div class="card text-bg-dark mb-3">
                         <div class="card-header">Artikel</div>
                         <div class="card-body">
                             <h5 class="card-title fs-4 fw-bold">{{$total_articles}} Artikel</h5>
                             <p class="card-text mt-3">
                                 <a href="{{url('zancc-admin/articles')}}"
-                                   class="nav-link shadow-sm text-dark fw-light bg-dark-subtle p-1 rounded w-25 text-center">selengkapnya</a>
+                                   class="nav-link shadow-sm text-black fw-medium bg-dark-subtle p-1 rounded text-center" style="max-width: 200px">selengkapnya</a>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="card text-bg-secondary mb-3">
+                <div class="col-12 col-md-6">
+                    <div class="card text-bg-dark mb-3">
                         <div class="card-header">Kategori</div>
                         <div class="card-body">
                             <h5 class="card-title fs-4 fw-bold">{{$total_categories}} Kategori</h5>
                             <p class="card-text mt-3">
                                 <a href="{{url('zancc-admin/categories')}}"
-                                   class="nav-link shadow-sm text-dark fw-light bg-dark-subtle p-1 rounded w-25 text-center">selengkapnya</a>
+                                   class="nav-link shadow-sm text-black fw-medium bg-dark-subtle p-1 rounded text-center" style="max-width: 200px">selengkapnya</a>
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="p-3 border border-dark-subtle border-1 rounded-2">
-                <div class="row my-2 m-2">
-                    <div class="col-6">
+                <div class="row my-2 m-2 gap-4 gap-lg-0">
+                    <div class="col-12 col-lg-6">
                         <h4>Artikel Terbaru</h4>
                         <table class="table table-striped">
                             <thead>
@@ -65,7 +65,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-lg-6">
                         <h4>Artikel Terpopuler</h4>
                         <table class="table table-striped">
                             <thead>

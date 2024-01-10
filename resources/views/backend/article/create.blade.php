@@ -5,9 +5,9 @@
         <div class="my-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a style="text-decoration: none" href="{{url('dashboard')}}"><i
+                    <li class="breadcrumb-item"><a style="text-decoration: none" href="{{url('zancc-admin/dashboard')}}"><i
                                     class="bi bi-house"></i></a></li>
-                    <li class="breadcrumb-item"><a style="text-decoration: none" href="{{url('articles')}}">Artikel</a>
+                    <li class="breadcrumb-item"><a style="text-decoration: none" href="{{url('zancc-admin/articles')}}">Artikel</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">Tambah Artikel</li>
                 </ol>

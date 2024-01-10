@@ -1,8 +1,8 @@
 <!-- Side widgets-->
 <div class="col-lg-4">
     <!-- Search widget-->
-    <div class="card shadow mb-3">
-        <div class="card-header fs-6 fw-bold">cari artikel</div>
+    <div class="card shadow mb-3" data-aos="zoom-in" data-aos-delay="100">
+        <div class="card-header fs-6 fw-medium font-title">cari artikel</div>
         <div class="card-body">
             <form action="{{url('/posts/search')}}" method="post">
                 @csrf
@@ -18,8 +18,8 @@
         </div>
     </div>
     <!-- Categories widget-->
-    <div class="card shadow mb-3">
-        <div class="card-header fs-6 fw-bold">Kategori</div>
+    <div class="card shadow mb-3" data-aos="zoom-in" data-aos-delay="150">
+        <div class="card-header fs-6 fw-medium font-title">Kategori</div>
         <div class="card-body">
             <ul class="list-unstyled d-flex flex-wrap w-100 gap-2">
                 @foreach($categories as $category)
@@ -32,12 +32,12 @@
         </div>
     </div>
     <!-- Side widget-->
-    <div class="card shadow mb-3">
-        <div class="card-header fs-6 fw-bold">Artikel Populer</div>
+    <div class="card shadow mb-3" data-aos="zoom-in" data-aos-delay="200">
+        <div class="card-header fs-6 fw-medium font-title">Artikel Populer</div>
         <div class="card-body">
             @foreach($popular_articles as $article)
                 <div class="d-flex justify-content-between">
-                    <a href="{{url('posts/'.$article->slug)}}" class="fw-medium text-decoration-none text-dark">{{\Illuminate\Support\Str::limit($article->title, 40)}}</a>
+                    <a href="{{url('posts/'.$article->slug)}}" class="fw-medium text-decoration-none text-dark font-paragraph">{{\Illuminate\Support\Str::limit($article->title, 35)}}</a>
                     <p class="text-muted">{{$article->views}}x dilihat</p>
                 </div>
             @endforeach

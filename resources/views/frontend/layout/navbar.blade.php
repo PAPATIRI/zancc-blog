@@ -1,7 +1,7 @@
 <!-- Responsive navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand fs-5" href="{{url('/')}}">zanccode</a>
+<nav class="navbar navbar-expand-lg navbar-dark text-bg-dark fixed-top" >
+    <div class="container font-paragraph">
+        <a class="navbar-brand fs-5 font-title" href="{{url('/')}}">zanccode</a>
         <button
                 class="navbar-toggler"
                 type="button"
